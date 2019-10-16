@@ -26,9 +26,6 @@ instance.interceptors.request.use(
         return config;
     },
     error => {
-        Message.error({
-            message: "加载超时"
-        });
         return Promise.reject(error);
     }
 );

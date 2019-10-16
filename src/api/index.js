@@ -1,12 +1,12 @@
 import axios from "./http";
-let PATH = '62.234.138.175'
+let PATH = 'http://62.234.138.175:8000'
 let LIANLONG = "lianlong";
 let HAIDONG = "haidong";
 let LONGMIN = "longmin";
 export default {
-    login(params) {
-        //login登录
-        return axios.post(PATH + "/ctl/user/login", params);
+    getDynamicWaterInfo() {
+        //获取动态水质信息
+        return axios.get(PATH + "/water/getDynamicWaterInfo", );
     },
     logout() {
         //退出登录
