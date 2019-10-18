@@ -5,15 +5,15 @@ import {
     NavLink,
     Switch
 } from "react-router-dom";
+import "./index.scss";
 import { getRootPath } from "../../utils";
-import HistoryData from "../../Pages/HistoryData";
-import Compare from "../../Pages/Compare";
-import DataTrend from "../../Pages/DataTrend";
-import AlarmVal from "../../Pages/AlarmVal";
-import api from "../../api/index.js";
+import Home from "../../pages/Home";
+import HistoryData from "../../pages/HistoryData";
+import Compare from "../../pages/Compare";
+import AlarmVal from "../../pages/AlarmVal";
+import NotFound from "../../pages/NotFound";
 import { Layout, Menu, Icon } from "antd";
 const { Header, Sider, Content } = Layout;
-const NotFound = () => <div>404Page</div>;
 export default class ContentWrap extends Component {
     constructor(props) {
         super(props);
@@ -26,16 +26,14 @@ export default class ContentWrap extends Component {
             defaultKeys: getRootPath()
         });
     }
-    componentDidMount() {
-        api.getDynamicWaterInfo().then(res => {
-            console.log(res);
-        });
-    }
     render() {
         let { defaultKeys } = this.state;
         return (
             <Layout className="wrapper">
-                <Header>Header</Header>
+                <Header>
+                    <div className="head-logo"></div>
+                    <h1 className="head-title">矿井水害监测数据分析与可视化</h1>
+                </Header>
                 <Layout>
                     <Router>
                         <Sider>
@@ -47,7 +45,7 @@ export default class ContentWrap extends Component {
                                 <Menu.Item key="/home">
                                     <NavLink exact to="/home">
                                         <Icon type="bank" />
-                                        概览
+                                        首页
                                     </NavLink>
                                 </Menu.Item>
                                 <Menu.Item key="/history">
@@ -74,6 +72,16 @@ export default class ContentWrap extends Component {
                             <Switch>
                                 <Route
                                     exact
+                                    path="/water/index.html"
+                                    component={Home}
+                                ></Route>
+                                <Route
+                                    exact
+                                    path="/home"
+                                    component={Home}
+                                ></Route>
+                                <Route
+                                    exact
                                     path="/compare"
                                     component={Compare}
                                 ></Route>
@@ -81,11 +89,6 @@ export default class ContentWrap extends Component {
                                     exact
                                     path="/history"
                                     component={HistoryData}
-                                ></Route>
-                                <Route
-                                    exact
-                                    path="/trend"
-                                    component={DataTrend}
                                 ></Route>
                                 <Route
                                     exact

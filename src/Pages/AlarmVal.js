@@ -1,33 +1,23 @@
 import React, { PureComponent as Component } from "react";
-import "../Styles/waterTemp.scss";
-import { Tabs } from "antd";
+import "../styles/index.scss";
 import { Card } from "antd";
-import HistoryData from "../Components/WaterTemp/History";
+import Record from "../components/Alarm/Record";
+import WarnMostValue from "../components/Alarm/WarnMost";
 const tabList = [
     {
         key: "tab1",
-        tab: "tab1"
+        tab: "预警记录"
     },
     {
         key: "tab2",
-        tab: "tab2"
-    },
-    {
-        key: "tab3",
-        tab: "tab3"
-    },
-    {
-        key: "tab4",
-        tab: "tab4"
+        tab: "预警阈值"
     }
 ];
 const contentList = {
-    tab1: <HistoryData />,
-    tab2: <p>content2</p>,
-    tab3: <p>content3</p>,
-    tab4: <p>content4</p>
+    tab1: <Record />,
+    tab2: <WarnMostValue />
 };
-export class index extends Component {
+export default class Alarm extends Component {
     constructor() {
         super();
         this.state = {
@@ -54,5 +44,3 @@ export class index extends Component {
         );
     }
 }
-
-export default index;

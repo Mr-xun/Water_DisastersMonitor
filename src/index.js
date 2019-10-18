@@ -6,9 +6,8 @@ import * as serviceWorker from "./serviceWorker";
 import { createStore, combineReducers, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import Logger from "redux-logger";
-import reducersOptions from "./Reducers";
+import reducersOptions from "./reducers";
 const reducers = combineReducers(reducersOptions);
-// const store = createStore(reducers, {}, applyMiddleware(Logger));
 const store = createStore(reducers, {}, applyMiddleware(Logger));
 const renderPage = () => {
     ReactDOM.render(

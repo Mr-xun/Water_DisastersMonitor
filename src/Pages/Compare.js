@@ -1,58 +1,70 @@
 import React, { PureComponent as Component } from "react";
-import "../Styles/waterTemp.scss";
-import { Tabs } from "antd";
-import { Card } from "antd";
-import HistoryData from "../Components/Compare/History";
-const tabList = [
-    {
-        key: "tab1",
-        tab: "tab1"
-    },
-    {
-        key: "tab2",
-        tab: "tab2"
-    },
-    {
-        key: "tab3",
-        tab: "tab3"
-    },
-    {
-        key: "tab4",
-        tab: "tab4"
-    }
-];
-const contentList = {
-    tab1: <HistoryData />,
-    tab2: <p>content2</p>,
-    tab3: <p>content3</p>,
-    tab4: <p>content4</p>
-};
-export class index extends Component {
+import "../styles/compare.scss";
+import { Card, Form, Button, DatePicker } from "antd";
+import { chooseDate } from "../utils";
+import Result from "../components/Compare/Result";
+import moment from "moment";
+const dateFormat = "YYYY-MM-DD";
+const nowDate = chooseDate(0);
+const startDate = chooseDate(7);
+export default class Compare extends Component {
     constructor() {
         super();
         this.state = {
-            key: "tab1"
+            a_time: startDate,
+            b_time: nowDate
         };
+        this.onChangeOne = this.onChangeOne.bind(this);
+        this.onChangeTwo = this.onChangeTwo.bind(this);
+        this.compare = this.compare.bind(this);
     }
-    onTabChange = (key, type) => {
-        this.setState({ [type]: key });
+    handleFormLayoutChange = e => {
+        this.setState({ formLayout: e.target.value });
     };
+    onChangeOne(date, dateString) {
+        this.setState({ a_time: dateString });
+    }
+    onChangeTwo(date, dateString) {
+        this.setState({ b_time: dateString });
+    }
+    compare() {
+        this.refs.resultFn.getCompareData();
+    }
+    componentDidMount() {
+        this.refs.resultFn.getCompareData();
+    }
     render() {
         return (
             <div className="main">
-                <Card
-                    style={{ width: "100%" }}
-                    tabList={tabList}
-                    activeTabKey={this.state.key}
-                    onTabChange={key => {
-                        this.onTabChange(key, "key");
-                    }}
-                >
-                    {contentList[this.state.key]}
+                <Card>
+                    <div className="compare-content">
+                        <Form layout="inline">
+                            <Form.Item label="对比时间一">
+                                <DatePicker
+                                    key="a_time"
+                                    defaultValue={moment(startDate, dateFormat)}
+                                    format={dateFormat}
+                                    onChange={this.onChangeOne}
+                                />
+                            </Form.Item>
+                            <Form.Item label="对比时间二">
+                                <DatePicker
+                                    key="b_time"
+                                    defaultValue={moment(nowDate, dateFormat)}
+                                    format={dateFormat}
+                                    onChange={this.onChangeTwo}
+                                />
+                            </Form.Item>
+                            <Form.Item>
+                                <Button type="primary" onClick={this.compare}>
+                                    对比
+                                </Button>
+                            </Form.Item>
+                        </Form>
+                    </div>
+                    <Result ref="resultFn" timeObj={this.state} />
                 </Card>
             </div>
         );
     }
 }
-
-export default index;

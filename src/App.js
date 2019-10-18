@@ -1,8 +1,8 @@
-import React, { Component } from "react";
+import React from "react";
 import "./App.scss";
 import zhCN from "antd/es/locale/zh_CN";
 import { ConfigProvider } from "antd";
-import ContentWrap from "./Components/ContentWrap";
+import ContentWrap from "./components/ContentWrap";
 const App = () => {
     return (
         <div className="App" style={{ height: "100%" }}>

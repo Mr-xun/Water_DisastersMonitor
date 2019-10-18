@@ -1,5 +1,4 @@
 import axios from "axios";
-let request_url = "";
 axios.defaults.withCredentials = true; //携带cookie
 axios.defaults.headers.post["Content-Type"] =
     "application/x-www-form-urlencoded; charset=utf-8";
@@ -22,7 +21,6 @@ let instance = axios.create({
 });
 instance.interceptors.request.use(
     config => {
-        request_url = config.url;
         return config;
     },
     error => {
