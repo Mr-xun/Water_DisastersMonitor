@@ -8,7 +8,7 @@ let _CURRENT_PATH_ = (function() {
         case "62.234.138.175:8000":
             return ORIGIN_PATH;
         default:
-            return LOCAL_PATH;
+            return ORIGIN_PATH;
     }
 })();
 export default {

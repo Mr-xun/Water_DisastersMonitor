@@ -12,6 +12,7 @@ import HistoryData from "../../pages/HistoryData";
 import Compare from "../../pages/Compare";
 import AlarmVal from "../../pages/AlarmVal";
 import NotFound from "../../pages/NotFound";
+
 import { Layout, Menu, Icon } from "antd";
 const { Header, Sider, Content } = Layout;
 export default class ContentWrap extends Component {
@@ -51,7 +52,7 @@ export default class ContentWrap extends Component {
                                 <Menu.Item key="/history">
                                     <NavLink exact to="/history">
                                         <Icon type="unordered-list" />
-                                        历史趋势
+                                        历史&更正
                                     </NavLink>
                                 </Menu.Item>
                                 <Menu.Item key="/compare">
