@@ -10,7 +10,7 @@ const tabList = [
     },
     {
         key: "tab2",
-        tab: "预警阈值"
+        tab: "预警值"
     }
 ];
 const contentList = {

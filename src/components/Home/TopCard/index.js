@@ -8,7 +8,12 @@ export default class TopCard extends Component {
     constructor() {
         super();
         this.state = {
-            top_value: {}
+            top_value: {
+                ph: {},
+                pressure: {},
+                temperature: {},
+                electrolytic: false
+            }
         };
     }
     intervalGetValue() {
@@ -34,11 +39,43 @@ export default class TopCard extends Component {
     }
     render() {
         let { ph, pressure, temperature, electrolytic } = this.state.top_value;
-        let TempVal = () => (
-            <span>{temperature ? temperature + "℃" : "--"}</span>
+        let TipImg = (
+            <img
+                className="warn-tip"
+                src={require("../../../assets/imgs/warn.png")}
+                alt=""
+            />
         );
-        let PreVal = () => <span>{pressure ? pressure + "Mpa" : "--"}</span>;
-        let PhVal = () => <span>{ph || "--"}</span>;
+        let TemTip = null;
+        let PreTip = null;
+        let PhTip = null;
+        if (temperature.isWarn) TemTip = TipImg;
+        if (pressure.isWarn) PreTip = TipImg;
+        if (ph.isWarn) PhTip = TipImg;
+
+        let TempVal = () => (
+            <span
+                className={
+                    temperature && temperature.isWarn ? "red-tex" : "white-tex"
+                }
+            >
+                {temperature ? temperature.value + "℃" : "--"}
+            </span>
+        );
+        let PreVal = () => (
+            <span
+                className={
+                    pressure && pressure.isWarn ? "red-tex" : "white-tex"
+                }
+            >
+                {pressure ? pressure.value + "Mpa" : "--"}
+            </span>
+        );
+        let PhVal = () => (
+            <span className={ph && ph.isWarn ? "red-tex" : "white-tex"}>
+                {ph ? ph.value : "--"}
+            </span>
+        );
         let EleVal = () => <span>{electrolytic ? "强" : "弱"}</span>;
         return (
             <div className="top-content">
@@ -52,7 +89,10 @@ export default class TopCard extends Component {
                         <Col span={6}>
                             <Card bordered={false}>
                                 <div className="card-box gradient-1">
-                                    <h3 className="card-title">当前水温</h3>
+                                    <h3 className="card-title">
+                                        当前水温
+                                        {TemTip}
+                                    </h3>
                                     <div className="main-cont">
                                         <h2 className="cur-val">
                                             <TempVal />
@@ -70,7 +110,10 @@ export default class TopCard extends Component {
                         <Col span={6}>
                             <Card bordered={false}>
                                 <div className="card-box gradient-2">
-                                    <h3 className="card-title">当前水压</h3>
+                                    <h3 className="card-title">
+                                        当前水压
+                                        {PreTip}
+                                    </h3>
                                     <div className="main-cont">
                                         <h2 className="cur-val">
                                             <PreVal />
@@ -88,7 +131,10 @@ export default class TopCard extends Component {
                         <Col span={6}>
                             <Card bordered={false}>
                                 <div className="card-box gradient-3">
-                                    <h3 className="card-title">当前PH</h3>
+                                    <h3 className="card-title">
+                                        当前PH
+                                        {PhTip}
+                                    </h3>
                                     <div className="main-cont">
                                         <h2 className="cur-val">
                                             <PhVal />

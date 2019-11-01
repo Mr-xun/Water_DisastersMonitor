@@ -3,6 +3,7 @@ import "../styles/compare.scss";
 import { Card, Form, Button, DatePicker } from "antd";
 import { chooseDate } from "../utils";
 import Result from "../components/Compare/Result";
+import Echart from "../components/Compare/Echart";
 import moment from "moment";
 const dateFormat = "YYYY-MM-DD";
 const nowDate = chooseDate(0);
@@ -29,9 +30,11 @@ export default class Compare extends Component {
     }
     compare() {
         this.refs.resultFn.getCompareData();
+        this.refs.echart.initEchartData();
     }
     componentDidMount() {
         this.refs.resultFn.getCompareData();
+        this.refs.echart.initEchartData();
     }
     render() {
         return (
@@ -63,6 +66,7 @@ export default class Compare extends Component {
                         </Form>
                     </div>
                     <Result ref="resultFn" timeObj={this.state} />
+                    <Echart ref="echart" timeObj={this.state}></Echart>
                 </Card>
             </div>
         );

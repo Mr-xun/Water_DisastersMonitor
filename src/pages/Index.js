@@ -19,15 +19,15 @@ export default class Index extends Component {
             <div className="tip-box">
                 <p>
                     <em>水温：</em>
-                    <span>{temperature ? temperature + "℃" : "--"}</span>
+                    <span>{temperature ? temperature.value + "℃" : "--"}</span>
                 </p>
                 <p>
                     <em>水压：</em>
-                    <span>{pressure ? pressure + "Mpa" : "--"}</span>
+                    <span>{pressure ? pressure.value + "Mpa" : "--"}</span>
                 </p>
                 <p>
                     <em>PH值：</em>
-                    <span>{ph ? ph : "--"}</span>
+                    <span>{ph ? ph.value : "--"}</span>
                 </p>
                 <p>
                     <em>电解质：</em>
@@ -37,6 +37,9 @@ export default class Index extends Component {
         );
         return (
             <div className="index-main">
+                <div className="index-title">
+                    <h3>矿井水害监测</h3>
+                </div>
                 <div className="img-bg">
                     <img src={require("../assets/imgs/index.bmp")} alt="" />
                 </div>
@@ -49,7 +52,7 @@ export default class Index extends Component {
                         <img
                             onMouseEnter={this.getData}
                             onClick={this.goPages}
-                            src={require("../assets/imgs/local.png")}
+                            src={require("../assets/imgs/local2.png")}
                             alt=""
                         />
                     </Popover>
@@ -63,7 +66,7 @@ export default class Index extends Component {
                         <img
                             onMouseEnter={this.getData}
                             onClick={this.goPages}
-                            src={require("../assets/imgs/local.png")}
+                            src={require("../assets/imgs/local2.png")}
                             alt=""
                         />
                     </Popover>
@@ -77,7 +80,7 @@ export default class Index extends Component {
                         <img
                             onMouseEnter={this.getData}
                             onClick={this.goPages}
-                            src={require("../assets/imgs/local.png")}
+                            src={require("../assets/imgs/local2.png")}
                             alt=""
                         />
                     </Popover>
@@ -91,7 +94,7 @@ export default class Index extends Component {
                         <img
                             onMouseEnter={this.getData}
                             onClick={this.goPages}
-                            src={require("../assets/imgs/local.png")}
+                            src={require("../assets/imgs/local2.png")}
                             alt=""
                         />
                     </Popover>

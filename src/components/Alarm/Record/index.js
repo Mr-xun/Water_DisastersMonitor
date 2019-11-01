@@ -19,7 +19,7 @@ export default class Record extends Component {
             recordData: [],
             start_time: startDate,
             end_time: nowDate,
-            loading: false
+            loading: false,
         };
         this.onChange = this.onChange.bind(this);
         this.search = this.search.bind(this);
@@ -60,13 +60,19 @@ export default class Record extends Component {
             });
         });
     }
+
+   
     componentDidMount() {
         this.getRecord();
         this.refs.echart.getHisEchartData();
-
     }
     render() {
-        let { recordData, loading, start_time, end_time } = this.state;
+        let {
+            recordData,
+            loading,
+            start_time,
+            end_time,
+        } = this.state;
         return (
             <div className="record-wrap">
                 <div className="search-content">
@@ -100,7 +106,11 @@ export default class Record extends Component {
                                 dataIndex="temperature"
                                 render={val => <span>{val + "℃"}</span>}
                             />
-                            <Column title="水压" dataIndex="pressure" render={val => <span>{val + "Mpa"}</span>}/>
+                            <Column
+                                title="水压"
+                                dataIndex="pressure"
+                                render={val => <span>{val + "Mpa"}</span>}
+                            />
                             <Column title="PH值" dataIndex="ph" />
                             <Column
                                 title="电解性"
